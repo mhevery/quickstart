@@ -1,0 +1,19 @@
+{
+  "name": "quickstart",
+  "version": "0.0.0",
+  "homepage": "https://github.com/akorchev/quickstart",
+  "authors": [
+    "Atanas Korchev <akorchev@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "kendo-ui-core": "~2014.3.1506"
+  }
+}
