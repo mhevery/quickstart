@@ -1,7 +1,8 @@
 <h1>Number {{ number }}</h1>
 <p>
-    &lt;input type="text"&gt;<input type="number" [value]="number">
+    &lt;input type="text"&gt;<input type="number" [value]="number" (keyup)="number = $event.target.value">
 </p>
 <p>
-    &lt;kendo-numeric&gt;<kendo-numeric [value]="number">
+    &lt;kendo-numeric&gt;<kendo-numeric [value]="number" (change)="number = $event.value">
 </p>
+<!-- there is forms API in the works which will make this simpler, for now just register events -->
