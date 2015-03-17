@@ -1,4 +1,5 @@
 import {NgElement, Component, Template, bootstrap} from 'angular2/angular2';
+import {EventEmitter} from 'angular2/src/core/annotations/di'
 import 'kendo-ui-core';
 
 // Annotation section
@@ -16,6 +17,10 @@ class MyAppComponent {
     constructor() {
         this.number = 42;
     }
+    
+    onNumberChange(value) {
+      this.number = value;
+    }
 }
 
 @Component({
@@ -30,10 +35,14 @@ class MyAppComponent {
 class NumericTextBox {
     widget: kendo.ui.NumericTextBox;
 
-    constructor(el: NgElement) {
-        var input = el.domElement.shadowRoot.querySelector("input");
+    constructor(el: NgElement, @EventEmitter('change') fireChange:Function) {
+        // We very much frown upon this, a better solution is in the works.
+        var input = el.domElement.firstChild;
 
         this.widget = new kendo.ui.NumericTextBox(input);
+        this.widget.bind('spin', function() {
+          fireChange({value: this.value()});
+        });
     }
 
     get value():Number {
